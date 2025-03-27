@@ -39,17 +39,16 @@ int main(int argc, char* argv[]){
 	printf("Введите число: ");
 	if (fgets(buf, sizeof(buf), stdin) == 0)
 	    break;
-	buf[strcspn(buf, "\n")] = '\0';
+
 	if (send(sock, buf, strlen(buf), 0) < 0){
 	    perror("Ошибка передачи данных");
 	    break;
 	}
-	memset(buf, 0, 1024);
 	if ((n = recv(sock, buf, 1023, 0)) <= 0){
 	    printf("Соединение разорвано\n");
 	    break;
 	}
-	buf[n] = '\0';
+
 	printf("Ответ сервера: %s\n", buf);
 	if (strcmp(buf, "Верно") == 0)
 	    break;

@@ -37,7 +37,6 @@ int main(int argc, char* argv[]){
     int n;
     srand(time(NULL));
     int num = rand() % 100 + 1;//Загаданное число от 1 до 100
-    printf("%d", num);
     char buf[1024];
     char ip[1024];
     int res;
@@ -50,10 +49,10 @@ int main(int argc, char* argv[]){
 	}
         inet_ntop(AF_INET, &client_addr.sin_addr.s_addr, ip, sizeof(ip));
 	printf("%s: клиент подключился\n", ip);
-	memset(buf, 0, 1024);
+
 	if ((n = recv(fd, buf, 1023, 0)) <= 0)
 	    break;
-	buf[n] = '\0';
+
 	printf("%s: %s", ip, buf);
 	res = atoi(buf);
 
